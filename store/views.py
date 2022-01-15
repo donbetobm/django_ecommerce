@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 # Since we're working with models, we need to import them
@@ -17,3 +17,7 @@ def all_products(request):
     # we are returning the template we want to use and the data we need
     return render(request, 'store/home.html', {'products': products})
  
+# this function will allow us to make a query to the database collecting the item's name, which will be in the url as well
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug, in_stock=True)
+    return render(request, 'store/products/detail.html', {'product' : product})
