@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.fields.related import ForeignKey
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 from core.settings import AUTH_PASSWORD_VALIDATORS
 
@@ -46,6 +47,10 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = 'Products'
         ordering = ('-created',)
+
+    def get_absolute_url(self):
+        return reverse('store:product_detail', args=[self.slug])
+    
 
     
     def __str__(self) -> str:
