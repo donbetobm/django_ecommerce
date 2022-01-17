@@ -15,6 +15,10 @@ class Category(models.Model):
     # A class within a class for setting a plural name for each category
     class Meta:
         verbose_name_plural = 'categories'
+    
+    def get_absolute_url(self):
+        return reverse("store:product_detail", args=[self.slug])
+    
 
     """
     Data will be returned data from the database. By default we return the data which has two components
