@@ -17,7 +17,7 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
     
     def get_absolute_url(self):
-        return reverse("store:product_detail", args=[self.slug])
+        return reverse('store:product_detail', args=[self.slug])
     
 
     """
@@ -26,7 +26,7 @@ class Category(models.Model):
     We need to refer that data that is return, and we need a method in order to do that. 
     That's why we return 'self.name' in the following def '__str__' function
     """
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
 
 
@@ -57,5 +57,5 @@ class Product(models.Model):
     
 
     
-    def __str__(self) -> str:
+    def __str__(self):
         return self.tittle
