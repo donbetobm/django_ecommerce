@@ -23,7 +23,7 @@ def product_detail(request, slug):
     return render(request, 'store/products/detail.html', {'product' : product})
 
 # this function will allow us to see a page with the categories, we'll pass the category_slug to be able to make the query we want
-def category_list(request, category_slug):
+def category_list(request, category_slug=None):
     # first we get the object to select one item from the database into Category table with the slug passed as parameter
     category = get_object_or_404(Category, slug=category_slug)
     # Now we can use category variable to make a query in products database: find everything where category is category (variable)
