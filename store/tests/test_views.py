@@ -33,7 +33,14 @@ class TestViewResponses(TestCase):
 
     def test_product_detail_url(self):
         """
-        Test items response status
+        Test Product response status
         """
         response = self.c.get(reverse('store:product_detail', args=['django']))
+        self.assertEqual(response.status_code, 200)
+
+    def test_category_detail_url(self):
+        """
+        Test Categorie response status
+        """
+        response = self.c.get(reverse('store:category_list', args=['django']))
         self.assertEqual(response.status_code, 200)
