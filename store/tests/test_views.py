@@ -4,8 +4,10 @@ from unittest import skip
 from django.test import TestCase
 
 from django.contrib.auth.models import User
+from django.http import HttpRequest
 from store.models import Category, Product
 from django.urls import reverse
+from store.views import all_products
 
 from django.test import Client
 
@@ -43,4 +45,15 @@ class TestViewResponses(TestCase):
         Test Categorie response status
         """
         response = self.c.get(reverse('store:category_list', args=['django']))
+        self.assertEqual(response.status_code, 200)
+
+    def test_homepage_html(self):
+        """
+        Example: code validation, search HTML for text
+        """
+        request = HttpRequest()
+        response = all_products(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<title>Home</title>', html)
+        self.assertTrue(html.startswith('\n<!DOCTYPE html>\n'))
         self.assertEqual(response.status_code, 200)
