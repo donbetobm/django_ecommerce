@@ -1,15 +1,13 @@
 # provides a facility to skip test
 from unittest import skip
 
-from django.test import TestCase
-
 from django.contrib.auth.models import User
 from django.http import HttpRequest
-from store.models import Category, Product
+from django.test import Client, RequestFactory, TestCase
 from django.urls import reverse
-from store.views import all_products
 
-from django.test import Client
+from store.models import Category, Product
+from store.views import all_products
 
 
 # @skip("demonstrating skipping")
@@ -21,6 +19,7 @@ from django.test import Client
 class TestViewResponses(TestCase):
     def setUp(self):
         self.c = Client()
+        self.factory = RequestFactory()
         User.objects.create(username='admin')
         Category.objects.create(name='django', slug='django')
         Product.objects.create(category_id=1, tittle='django', created_by_id=1,
@@ -52,6 +51,17 @@ class TestViewResponses(TestCase):
         Example: code validation, search HTML for text
         """
         request = HttpRequest()
+        response = all_products(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<title>Home</title>', html)
+        self.assertTrue(html.startswith('\n<!DOCTYPE html>\n'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_function(self):
+        """
+        Example: Using request factory
+        """
+        request = self.factory.get('/item/django')
         response = all_products(request)
         html = response.content.decode('utf8')
         self.assertIn('<title>Home</title>', html)
