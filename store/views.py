@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render
 # Since we're working with models, we need to import them
 from .models import Category, Product
 
+
 def categories(request):
     return {
         'categories': Category.objects.all()

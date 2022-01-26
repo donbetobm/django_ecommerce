@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.fields.related import ForeignKey
-from django.contrib.auth.models import User
 from django.urls import reverse
 
 from core.settings import AUTH_PASSWORD_VALIDATORS
+
 
 # Create your models here.
 class Category(models.Model):
