@@ -5,11 +5,6 @@ from django.shortcuts import get_object_or_404, render
 from .models import Category, Product
 
 
-def categories(request):
-    return {
-        'categories': Category.objects.all()
-    }
-
 # functions are basically the requests
 def all_products(request):
     # we run a query, SQL, to return all the products in the products table
