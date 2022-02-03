@@ -6,7 +6,7 @@ from .models import Category, Product
 
 
 # functions are basically the requests
-def all_products(request):
+def product_all(request):
     # we run a query, SQL, to return all the products in the products table
     products = Product.products.all()
     # let's save the data and make sure is available in the template
