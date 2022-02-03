@@ -45,7 +45,7 @@ class Product(models.Model):
     author = models.TextField(blank=True, default='admin')
     description = models.TextField(blank=True)
     # this allows to handle images processing, it doesn't store the images in the database, refers the link
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', default = 'images/Stephen.jpg')
     slug = models.SlugField(max_length=255)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     in_stock = models.BooleanField(default=True)
