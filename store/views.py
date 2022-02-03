@@ -16,7 +16,7 @@ def product_all(request):
 # this function will allow us to make a query to the database collecting the item's name, which will be in the url as well
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)
-    return render(request, 'store/products/detail.html', {'product' : product})
+    return render(request, 'store/products/single.html', {'product' : product})
 
 # this function will allow us to see a page with the categories, we'll pass the category_slug to be able to make the query we want
 def category_list(request, category_slug=None):
